@@ -23,13 +23,16 @@ export function Product({product}:ProductProps){
         id:product.id,
         name:product.name,
         price:product.price,
-        image:product.image
+        image:product.image,
+        priceID:product.default_price
     }
 
     function UpdateShoppingCart(){
         setListOfProducts((prev)=>[...prev,newProduct])
-        console.log("Enviou")
     }
+        
+        
+        
     return(
         <>
             <div className="flex justify-center items-center rounded-md pb-1 px-1 w-[40rem] h-[39rem] bg-gradient-to-b from-[#1fa184] to-[#7465d4]">

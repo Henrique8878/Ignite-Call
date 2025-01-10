@@ -21,11 +21,13 @@ export default function Nav(){
 
     
     
-const {listOfProducts,setListOfProducts,keyProductsStripe} = useContext(ContextIgniteShop)
+const {listOfProducts,setListOfProducts,keyProductsStripe,setKeyProductsStripe} = useContext(ContextIgniteShop)
 
-function RemoveProductShoppingCart(id:string){
+function RemoveProductShoppingCart(id:string,idBusca:string){
     const filteredArray = listOfProducts.filter((object)=>object.id!==id)
     setListOfProducts(filteredArray)
+    const filteredArrayKeyStripe = keyProductsStripe.filter((item)=>item.price!==idBusca)
+    setKeyProductsStripe(filteredArrayKeyStripe)
 }
 
 function SumTotalValueListOfProducts(){
@@ -69,7 +71,7 @@ async function PostCheckoutSession(){
                         <DropdownMenuTrigger asChild>
                             <Image src={fullBag} alt=''/>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent className='h-screen flex flex-col justify-between w-[45rem] bg-[#202024] border border-[#202024] py-24 px-20' align='start'>
+                        <DropdownMenuContent className='h-screen flex flex-col justify-between w-[45rem] bg-[#202024] border border-[#202024] py-24 px-20 overflow-y-auto' align='start'>
                             <section className='flex flex-col gap-6'>
                                 <DropdownMenuLabel className='text-[#e1e1e6] text-3xl'>Sacola de compras</DropdownMenuLabel>
                                 
@@ -82,7 +84,7 @@ async function PostCheckoutSession(){
                                         <div className='h-full flex flex-col pt-4 gap-4'>
                                             <span className='text-[#c4c4cc] text-2xl'>{item.name}</span>
                                             <span className='text-[#e1e1e6] text-2xl font-semibold'>{item.price?.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}</span>
-                                            <span className='text-[#00b37e] text-2xl font-semibold cursor-pointer' onClick={()=>RemoveProductShoppingCart(item.id)}>Remover</span>
+                                            <span className='text-[#00b37e] text-2xl font-semibold cursor-pointer' onClick={()=>RemoveProductShoppingCart(item.id,item.priceID)}>Remover</span>
                                         </div>
                                     </DropdownMenuItem>
                                     )

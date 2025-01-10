@@ -6,7 +6,8 @@ interface PropsListProducts{
       id:string,
       name:string,
       price:number | undefined,
-      image:string  
+      image:string , 
+      priceID:string 
 }
 
   type ListProducts = PropsListProducts[]
@@ -27,7 +28,9 @@ interface PropsListProducts{
     quantityProducts:number,
     setQuantityProducts:React.Dispatch<React.SetStateAction<number>>,
     keyProductsStripe:typeKeyProductsCheckoutStripe,
-    setKeyProductsStripe:React.Dispatch<React.SetStateAction<typeKeyProductsCheckoutStripe>>
+    setKeyProductsStripe:React.Dispatch<React.SetStateAction<typeKeyProductsCheckoutStripe>>,
+    copyKeyProductsStripe:string,
+    setCopyKeyProductStripe:React.Dispatch<React.SetStateAction<string>>
   }
   
     
@@ -43,10 +46,11 @@ export function Context({children}:PropsChildrenContext){
     const [quantityProducts,setQuantityProducts] = useState(0)
     const [totalPrice,setTotalPrice] = useState(0)
     const [keyProductsStripe,setKeyProductsStripe] = useState<typeKeyProductsCheckoutStripe>([])
+    const [copyKeyProductsStripe,setCopyKeyProductStripe] = useState("")
    
 
 return(
-    <ContextIgniteShop.Provider value={{haveProduct,listOfProducts,setListOfProducts,totalPrice,setTotalPrice,quantityProducts,setQuantityProducts,keyProductsStripe,setKeyProductsStripe}}>
+    <ContextIgniteShop.Provider value={{haveProduct,listOfProducts,setListOfProducts,totalPrice,setTotalPrice,quantityProducts,setQuantityProducts,keyProductsStripe,setKeyProductsStripe,copyKeyProductsStripe,setCopyKeyProductStripe}}>
         {children}
     </ContextIgniteShop.Provider>
 )

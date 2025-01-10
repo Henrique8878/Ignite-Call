@@ -25,7 +25,6 @@ function addnewKeyProductShoppingCart(){
     setKeyProductsStripe((prev)=>[...prev,newKeyProduct])
 } 
    
-    
     return(
         <>
         {isProduct?
